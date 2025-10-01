@@ -1,8 +1,8 @@
-﻿//***************************************************************************
-// *Практическая работа №9                                                  *
-//* Выполнил: Абдуллаев Э.С., группа 2-ИСПд                                 *
-//* Задание: массив А = 10.Найти кол-во и сумму элементов, кратным М        *
-//***************************************************************************
+﻿//*******************************************************************************************
+// *Практическая работа №9                                                                  *
+//* Выполнил: Абдуллаев Э.С., группа 2-ИСПд                                                 *
+//* Задание:  массив = 10 найти кол-во и сумму элементов, значения которых кратны М         *
+//*******************************************************************************************
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -17,34 +17,46 @@ namespace Pr_9
     {
         static void Main(string[] args)
         {
-            try 
+            try
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Title = "Практическая работа №9";
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Здравствуйте!");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 int count = 0;
                 int sum = 0;
                 int[] A = new int[10];
-                Console.WriteLine("Введите 10 чисел для массива А: ");
+                Console.WriteLine("Введите 10 целых чисел для массива:");
                 for (int i = 0; i < A.Length; i++)
                 {
-                    Console.Write($"Элемент {i + 1}:");
+                    Console.Write($"Элемент {i + 1}: ");
                     A[i] = Convert.ToInt32(Console.ReadLine());
                 }
-                Console.Write("Введите значения для М: ");
-                int M = Convert.ToInt32(Console.ReadLine());
+                int M;
+                while (true)
+                {
+                    Console.Write("Введите значение M: ");
+                    M = Convert.ToInt32(Console.ReadLine());
+
+                    if (M == 0)
+                    {
+                        Console.WriteLine("Не верное значение");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 foreach (int num in A)
                 {
-                    if (num / M >= -1)
+                    if (num != 0 && num % M == 0)
                     {
                         count++;
                         sum += num;
                     }
                 }
-                Console.WriteLine($"Количество элементов: {count}");
-                Console.Write($"Сумма элементов, кратных М: {sum}");
+                Console.WriteLine($"Количество элементов кратных M: {count}");
+                Console.WriteLine($"Сумма элементов: {sum}");
             }
             catch (IndexOutOfRangeException iEx)
             {
